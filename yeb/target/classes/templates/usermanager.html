@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>员工信息中心</title>
+    <link th:href="@{/css/office.css}" href="/static/css/office.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/users.css" th:href="@{/css/users.css}" type="text/css" rel="stylesheet"/>
+    <script th:src="@{/js/jquery.js}"></script>
+</head>
+<body>
+<div th:replace="common :: copy"></div>
+<div th:replace="common :: copy1"></div>
+<!--显示个人信息-->
+<div>
+    <table id="table">
+        <tr>
+            <th>Id</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>电话号码</th>
+            <th>部门</th>
+            <th>角色</th>
+        </tr>
+        <tr class="tr" id="tr2" th:each="user : ${lists}">
+            <td id="id" name="id" th:text="${user.id}"></td>
+            <td class="td" contenteditable="true" id="user" name=name th:text="${user.name}"></td>
+            <td class="td" contenteditable="true" id="sex" name="sex" th:text="${user.sex}"></td>
+            <td class="td" contenteditable="true" id="age" name=age th:text="${user.age}"></td>
+            <td class="td" contenteditable="true" id="pn" name="phonenumber" th:text="${user.phonenumber}"></td>
+            <td class="td" contenteditable="true" id="dn" name="departmentname" th:text="${user.departmentname}"></td>
+            <td class="td1" contenteditable="true" id="role" name="role" th:text="${user.role}"></td>
+        </tr>
+    </table>
+    <button style="margin-left: 800px;margin-top: 20px" onclick="sent()">保存</button>
+</div>
+
+
+<!--保存用户信息-->
+<script type="text/javascript">
+    // function sent() {
+    //     let rows = document.getElementsByClassName("tr").length
+    //     let colums = document.getElementsByClassName("td1").length
+    //     alert(rows)
+    //     alert(colums)
+    //     alert(document.getElementById("id").innerText)
+    //     $.post({
+    //         url: "http://localhost:8080/login/updaterole",
+    //         data: {
+    //             // 'id': $("#id").val(),
+    //             'role': $("#tr2:eq(${user.id}++) td:eq(6)")
+    //             // 'role': $("#role").val()
+    //         },
+    //         success: function (status) {
+    //             alert(status)
+    //         }
+    //     })
+    // }
+    function sent() {
+        alert(document.getElementsByClassName("tr").length);
+        let obj = document.getElementById("table");
+       alert(obj.rows[1].cells[3].innerHTML)
+        for (let i = 1; i < document.getElementsByClassName("tr").length; i++) {
+            let id=obj.rows[i].cells[0].innerText;
+            let roles = obj.rows[i].cells[6].innerText;
+            alert(id);
+            alert(roles);
+            $.post({
+                url:"http://localhost:8080/login/updaterole",
+                data: {
+                    'id':id,
+                    'role' : roles},
+                    // success: function (status) {
+                    //     alert(status)
+                    // }
+            })
+        }
+    }
+</script>
+</body>
+</html>

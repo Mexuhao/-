@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>登录界面</title>
+    <script>
+        function loadXMLDoc() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // IE6, IE5 浏览器执行代码
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", "/try/ajax/ajax_info.txt", true);
+            xmlhttp.send();
+        }
+    </script>
+<!--    <script type="text/javascript" th:inline="javascript">-->
+<!--        function submits() {-->
+<!--            let a=[[${msg}]]-->
+<!--            alert(a)-->
+<!--        }-->
+<!--    </script>-->
+
+    <style>
+        body {
+            background-image: url("../static/img/bg.png");
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        html, body {
+            height: 90%;
+
+        }
+
+        h1 {
+            color: #FFF;
+            text-align: center;
+        }
+
+        .container {
+            margin: 100px auto;
+            width: 30%;
+        }
+
+        form {
+            background: #FFF;
+            height: 300px;
+            width: 100%;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        label {
+            color: #000;
+            font-weight: bold;
+            font-size: 20px;
+            margin-left: 40px;
+        }
+
+        input {
+            text-align: left;
+            margin: 10px;
+        }
+
+        .input {
+            width: 80%;
+            height: 35px;
+            margin-left: 40px;
+        }
+
+        .checkbox {
+            margin-left: 30px;
+        }
+
+        a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .submit {
+            display: inline-block;
+            margin-top: 0;
+            margin-left: 220px;
+            background: #000;
+            border: none;
+            color: #FFF;
+            height: 35px;
+            width: 100px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .left {
+            margin: 20px;
+        }
+
+        .right {
+            position: absolute;
+            right: 20px;
+        }</style>
+
+</head>
+
+<body th:style="'background-image: url(../img/bg.png)'">
+<div class="container">
+    <h1>用户登录</h1>
+    <form action="http://localhost:8080/login" method="post">
+        <br>
+
+        <label for="username">用户名</label> <br>
+        <input type="text" name="username" id="username" class="input" value="" placeholder="用户名" required><br>
+        <label for="pwd">密码</label><br>
+        <input type="password" name="password" id="pwd" class="input" value="" placeholder="密码" required>
+<!--        <div class="checkbox">-->
+<!--            <input type="checkbox" name="">-->
+<!--            <span>记住密码</span>-->
+<!--        </div>-->
+        <button type="submit" class="submit" onclick="submits()">开始登录</button>
+        <br>
+        <a href="http://localhost:8080/" class="left">返回首页</a>
+        <a href="http://localhost:8080/registerPage" class="right">注册</a>
+    </form>
+</div>
+
+</body>
+
+</html>

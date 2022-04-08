@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>办公管理页面</title>
+    <link th:href="@{/css/office.css}" href="/static/css/office.css" media="all" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/js/jquery.js}">
+    </script>
+</head>
+<body>
+<div id="window-header" style="width: 1920px;height: 35px">办公管理网站</div>
+<div id="nav" style="height: 964px;width: 200px;">
+    <ul>
+        <li><a href="http://localhost:8080/login/users">用户中心</a></li>
+        <li><a href="http://localhost:8080/login/tasks">任务管理</a></li>
+        <li><a href="http://localhost:8080/login/files">文件管理</a></li>
+        <li><a href="http://localhost:8080/login/communicate">在线论坛</a></li>
+        <li><a href="http://localhost:8080/login/exit">退出</a></li>
+    </ul>
+</div>
+
+<div id="table1" style="text-align: center;width: 80%;margin-left: 200px">
+    <table id="table2"style="text-align: center;width: 113%;margin-left: -9px;margin-top: 0px;margin-right: -1000px;">
+        <tr >
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>电话号码</th>
+            <th>部门</th>
+        </tr>
+        <tr id="tr1">
+            <td contenteditable="true" id="td1"></td>
+            <td contenteditable="true" id="td2"></td>
+            <td contenteditable="true" id="td3"></td>
+            <td contenteditable="true" id="td4"></td>
+            <td contenteditable="true" id="td5"></td>
+        </tr>
+    </table>
+    <button onclick="a1()" style="margin-top: 20px;margin-right: -1700px">提交</button>
+</div>
+
+</body>
+<script>
+    function a1() {
+
+        $("#td1").innerText
+        $.post({
+            url: "http://localhost:8080/login/save",
+            data: {
+                'name': $("table tr:eq(1) td:eq(0)").text(),
+                'sex': $("table tr:eq(1) td:eq(1)").text(),
+                'age': $("table tr:eq(1) td:eq(2)").text(),
+                'phonenumber': $("table tr:eq(1) td:eq(3)").text(),
+                'departmentname': $("table tr:eq(1) td:eq(4)").text()
+            },
+            success: function (status) {
+                alert(status)
+            }
+        })
+    }
+
+</script>
+</html>

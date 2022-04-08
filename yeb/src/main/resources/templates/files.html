@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>文件管理</title>
+    <link th:href="@{/css/office.css}" href="/static/css/office.css" media="all" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div th:insert="common :: copy"></div>
+<div th:insert="common :: copy1"></div>
+ <div style="margin-left: 200px">
+     <form role="form" th:action="@{/upload}" enctype="multipart/form-data" method="post">
+         <input type="file" name="file">
+         <button type="submit">提交</button>
+     </form>
+ </div>
+</body>
+</html>

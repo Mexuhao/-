@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户中心</title>
+    <link th:href="@{/css/office.css}" href="/static/css/office.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/users.css" th:href="@{/css/users.css}" type="text/css" rel="stylesheet"/>
+    <script th:src="@{/js/jquery.js}"></script>
+</head>
+<body>
+<div th:replace="common :: copy"></div>
+<div th:replace="common :: copy1"></div>
+<div>
+    <table>
+        <tr>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>电话号码</th>
+            <th>部门</th>
+        </tr>
+        <tr>
+            <td id="user" name=name th:text="${us.name}"></td>
+            <td id="sex" name="sex" th:text="${us.sex}"></td>
+            <td id="age" name=age th:text="${us.age}"></td>
+            <td id="pn" name="phonenumber" th:text="${us.phonenumber}"></td>
+            <td id="dn" name="departmentname" th:text="${us.departmentname}"></td>
+        </tr>
+    </table>
+    <button type="button" style="margin-left: 1700px;margin-top: 20px" onclick="QueryAll(); return false;">查询所有员工
+    </button>
+    <button type="button" style="margin-left: 1700px;margin-top: 20px" onclick="update(); return false;">修改</button>
+    <button style="margin-left: 1700px;margin-top: 20px" onclick="sent()">保存</button>
+    <!--查询所有员工-->
+</div>
+<script type="text/javascript">
+    function QueryAll() {
+        window.location.href = "http://localhost:8080/login/usermanager";
+    }
+</script>
+<script type="text/javascript">
+    function update() {
+        document.getElementById("user").contentEditable = "true";
+        document.getElementById("sex").contentEditable = "true";
+        document.getElementById("age").contentEditable = "true";
+        document.getElementById("pn").contentEditable = "true";
+        document.getElementById("dn").contentEditable = "true";
+    }
+
+</script>
+<script type="text/javascript">
+    function sent() {
+        $.post({
+            url: "http://localhost:8080/login/updateuser",
+            data: {
+                'name': $("table tr:eq(1) td:eq(0)").text(),
+                'sex': $("table tr:eq(1) td:eq(1)").text(),
+                'age': $("table tr:eq(1) td:eq(2)").text(),
+                'phonenumber': $("table tr:eq(1) td:eq(3)").text(),
+                'departmentname': $("table tr:eq(1) td:eq(4)").text()
+            },
+            success: function (status) {
+                alert(status)
+            }
+        })
+    }
+</script>
+</body>
+</html>

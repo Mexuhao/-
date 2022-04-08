@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+
+    function EditTables() {
+        for (var i = 0; i < arguments.length; i++) {
+            for (var i = 1; i < table.rows.length; i++) {
+                for (var j = 0; j < row.cells.length; j++) {
+
+
+                    var editType = row.cells[j].getAttribute("EditType");
+                    if (!editType) {
+
+                        editType = row.parentNode.rows[0].cells[j].getAttribute("EditType");
+                    }
+                    if (editType) {
+                        row.cells[j].onclick = function () {
+                            EditCell(this);
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+
+</script>
+</body>
+</html>

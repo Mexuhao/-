@@ -1,0 +1,79 @@
+
+body {
+    background-image: url("../img/bg.png");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+html, body {
+    height: 90%;
+
+}
+
+h1 {
+    color: #FFF;
+    text-align: center;
+}
+
+.container {
+    margin: 100px auto;
+    width: 30%;
+}
+
+form {
+    background: #FFF;
+    height: 300px;
+    width: 100%;
+    border-radius: 10px;
+    position: relative;
+}
+
+label {
+    color: #000;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 40px;
+}
+
+input {
+    text-align: left;
+    margin: 10px;
+}
+
+.input {
+    width: 80%;
+    height: 35px;
+    margin-left: 40px;
+}
+
+.checkbox {
+    margin-left: 30px;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.submit {
+    display: inline-block;
+    margin-top: 0;
+    margin-left: 145px;
+    background: #000;
+    border: none;
+    color: #FFF;
+    height: 35px;
+    width: 100px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.left {
+    margin: 20px;
+}
+
+.right {
+    position: absolute;
+    right: 20px;
+}
